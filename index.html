@@ -2,7 +2,7 @@
 <html lang="id">
   <head>
     <meta charset="utf-8" />
-    <title>CalorieSnap</title>
+    <title>CalorieSnap - Hitung Kalori Makanan</title>
 
     <base href="/" />
 
@@ -13,10 +13,25 @@
     />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="theme-color" content="#5B52E5" />
+    <meta name="description" content="Foto makanan Anda dan ketahui perkiraan kalorinya secara instan dengan CalorieSnap." />
 
+    <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json" />
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+
+    <!-- iOS Safari PWA Meta Tags & Touch Icon -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="CalorieSnap" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,12 +39,147 @@
       rel="stylesheet"
     />
 
-    <!-- add to homescreen for ios -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="CalorieSnap" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <!-- Initial Splash Screen Styles (Zero white-flash on app startup) -->
+    <style>
+      #cs-initial-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: opacity, transform;
+      }
+
+      #cs-initial-splash.cs-splash-hidden {
+        opacity: 0;
+        transform: scale(1.03);
+        pointer-events: none;
+      }
+
+      .cs-splash-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px;
+        max-width: 360px;
+        animation: csSplashAppear 0.5s ease-out;
+      }
+
+      .cs-splash-logo-container {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .cs-splash-logo {
+        width: 96px;
+        height: 96px;
+        border-radius: 26px;
+        box-shadow: 0 16px 36px -6px rgba(91, 82, 229, 0.38);
+        display: block;
+        animation: csLogoPulse 2s ease-in-out infinite;
+      }
+
+      .cs-splash-title {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        margin-bottom: 8px;
+      }
+
+      .cs-splash-title .brand-dark {
+        color: #111827;
+      }
+
+      .cs-splash-title .brand-purple {
+        color: #5B52E5;
+      }
+
+      .cs-splash-tagline {
+        font-size: 14px;
+        color: #64748B;
+        font-weight: 500;
+        margin: 0 0 28px 0;
+        letter-spacing: -0.01em;
+      }
+
+      .cs-splash-loader {
+        width: 140px;
+        height: 4px;
+        background-color: #EEF2F6;
+        border-radius: 9999px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .cs-splash-loader-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 45%;
+        background: linear-gradient(90deg, #6366F1, #5B52E5, #4F46E5);
+        border-radius: 9999px;
+        animation: csLoaderIndeterminate 1.2s ease-in-out infinite;
+      }
+
+      @keyframes csSplashAppear {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes csLogoPulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.035);
+        }
+      }
+
+      @keyframes csLoaderIndeterminate {
+        0% {
+          left: -45%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
+    <!-- Splash Screen shown immediately on initial load -->
+    <div id="cs-initial-splash" aria-hidden="true">
+      <div class="cs-splash-box">
+        <div class="cs-splash-logo-container">
+          <img
+            src="/icon-192.png"
+            alt="CalorieSnap"
+            class="cs-splash-logo"
+            onerror="this.src='/logo.svg'"
+          />
+        </div>
+        <div class="cs-splash-title">
+          <span class="brand-dark">Calorie</span><span class="brand-purple">Snap</span>
+        </div>
+        <p class="cs-splash-tagline">Snap, Hitung &amp; Hidup Sehat</p>
+        <div class="cs-splash-loader">
+          <div class="cs-splash-loader-bar"></div>
+        </div>
+      </div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

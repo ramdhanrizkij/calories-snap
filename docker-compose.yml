@@ -1,0 +1,19 @@
+services:
+  calories-snap:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: calories-snap-pwa
+    restart: unless-stopped
+    ports:
+      # Format: HOST_PORT:CONTAINER_PORT
+      # Silakan ubah port 3000 jika ingin menggunakan port lain di server/komputer Anda
+      - "3003:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

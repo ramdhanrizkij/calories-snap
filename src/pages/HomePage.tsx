@@ -1,10 +1,19 @@
 import { IonContent, IonIcon, IonLoading, IonModal, IonPage, IonToast, useIonRouter } from '@ionic/react';
-import { chevronForward, closeOutline, imageOutline, settingsOutline } from 'ionicons/icons';
+import {
+  arrowDownCircleOutline,
+  checkmarkCircleOutline,
+  chevronForward,
+  closeOutline,
+  imageOutline,
+  settingsOutline,
+} from 'ionicons/icons';
 import React, { useState } from 'react';
 
 import { BrandLogoIcon, CardBurstRays, FilledCameraIcon, HeroBurstRays } from '../components/CalorieSnapIcons';
+import { PwaInstallModal } from '../components/PwaInstallModal';
 import { useCalorie } from '../context/useCalorie';
 import { usePhotoGallery } from '../hooks/usePhotoGallery';
+import { usePwaInstall } from '../hooks/usePwaInstall';
 import { estimateFoodCalories } from '../services/calorieEstimator';
 import './HomePage.css';
 
@@ -12,6 +21,7 @@ const HomePage: React.FC = () => {
   const router = useIonRouter();
   const { takePhoto, pickFromGallery, isCapturing } = usePhotoGallery();
   const { setCurrentAnalysis, dailyTarget, setDailyTarget } = useCalorie();
+  const { isInstalled, isIOS, showPrompt, promptInstall, dismissPrompt, openInstallDialog } = usePwaInstall();
 
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -57,6 +67,13 @@ const HomePage: React.FC = () => {
     }
   };
 
+  const handleInstallClick = async () => {
+    const result = await promptInstall();
+    if (result === 'accepted') {
+      setToastMessage('Terima kasih! CalorieSnap sedang dipasang di layar utama Anda.');
+    }
+  };
+
   return (
     <IonPage className="home-page">
       <IonContent fullscreen className="home-content">
@@ -71,9 +88,23 @@ const HomePage: React.FC = () => {
               </span>
             </div>
 
-            <button type="button" className="cs-circle-icon-btn" onClick={handleOpenSettings} aria-label="Pengaturan">
-              <IonIcon icon={settingsOutline} />
-            </button>
+            <div className="home-header-actions">
+              {!isInstalled && (
+                <button
+                  type="button"
+                  className="cs-install-header-btn"
+                  onClick={openInstallDialog}
+                  aria-label="Pasang Aplikasi"
+                >
+                  <IonIcon icon={arrowDownCircleOutline} />
+                  <span>Pasang App</span>
+                </button>
+              )}
+
+              <button type="button" className="cs-circle-icon-btn" onClick={handleOpenSettings} aria-label="Pengaturan">
+                <IonIcon icon={settingsOutline} />
+              </button>
+            </div>
           </header>
 
           {/* Hero Section */}
@@ -142,8 +173,8 @@ const HomePage: React.FC = () => {
         <IonModal
           isOpen={isSettingsOpen}
           onDidDismiss={() => setIsSettingsOpen(false)}
-          initialBreakpoint={0.45}
-          breakpoints={[0, 0.45]}
+          initialBreakpoint={0.58}
+          breakpoints={[0, 0.58, 0.8]}
           className="settings-modal"
         >
           <div className="settings-sheet">
@@ -177,8 +208,39 @@ const HomePage: React.FC = () => {
                 Simpan Target
               </button>
             </form>
+
+            <div className="settings-pwa-block">
+              <span className="settings-label">Status Aplikasi</span>
+              {isInstalled ? (
+                <div className="settings-pwa-installed">
+                  <IonIcon icon={checkmarkCircleOutline} />
+                  <span>Aplikasi sudah terpasang di HP Anda</span>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="settings-pwa-btn"
+                  onClick={() => {
+                    setIsSettingsOpen(false);
+                    openInstallDialog();
+                  }}
+                >
+                  <IonIcon icon={arrowDownCircleOutline} />
+                  <span>Pasang Aplikasi ke Handphone</span>
+                </button>
+              )}
+            </div>
           </div>
         </IonModal>
+
+        {/* PWA Install Sheet Modal */}
+        <PwaInstallModal
+          isOpen={showPrompt}
+          onDismiss={() => dismissPrompt(3)}
+          onInstall={handleInstallClick}
+          isIOS={isIOS}
+          isInstalled={isInstalled}
+        />
 
         <IonLoading isOpen={isAnalyzing} message="Menganalisis foto makanan..." spinner="crescent" />
 

@@ -10,10 +10,17 @@ export const BrandLogoIcon: React.FC<{ className?: string }> = ({ className }) =
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
+    <defs>
+      <linearGradient id="brandFlameGrad" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stopColor="#F59E0B" />
+        <stop offset="60%" stopColor="#F97316" />
+        <stop offset="100%" stopColor="#EF4444" />
+      </linearGradient>
+    </defs>
     {/* Sparkle rays top-right */}
-    <path d="M27.5 4.5L29 1.8" stroke="#5B52E5" strokeWidth="2.2" strokeLinecap="round" />
-    <path d="M31.5 7.5L34.5 5.6" stroke="#5B52E5" strokeWidth="2.2" strokeLinecap="round" />
-    <path d="M33.2 12.2L36.2 12.2" stroke="#5B52E5" strokeWidth="2.2" strokeLinecap="round" />
+    <path d="M28.5 5L30 2" stroke="#F59E0B" strokeWidth="2.4" strokeLinecap="round" />
+    <path d="M32.5 8L35.5 6.2" stroke="#F59E0B" strokeWidth="2.4" strokeLinecap="round" />
+    <circle cx="34" cy="12.5" r="1.5" fill="#F59E0B" />
     {/* Camera outline body */}
     <path
       d="M7.5 11.5H10.6L12.5 8.5C13.1 7.6 14 7 15.1 7H21.9C23 7 23.9 7.6 24.5 8.5L26.4 11.5H29.5C31.7 11.5 33.5 13.3 33.5 15.5V27.5C33.5 29.7 31.7 31.5 29.5 31.5H7.5C5.3 31.5 3.5 29.7 3.5 27.5V15.5C3.5 13.3 5.3 11.5 7.5 11.5Z"
@@ -21,8 +28,16 @@ export const BrandLogoIcon: React.FC<{ className?: string }> = ({ className }) =
       strokeWidth="2.5"
       strokeLinejoin="round"
     />
+    {/* Sensor dot */}
+    <circle cx="9.5" cy="15.5" r="1.5" fill="#EF4444" />
     {/* Lens circle */}
-    <circle cx="18.5" cy="21.2" r="5.3" stroke="#5B52E5" strokeWidth="2.5" />
+    <circle cx="18.5" cy="21.5" r="6" stroke="#5B52E5" strokeWidth="2" fill="#1E1B4B" />
+    {/* Calorie Flame inside lens */}
+    <path
+      d="M18.5 17.5C18.5 17.5 19.8 19.8 19.8 21.2C19.8 22.4 18.8 23.5 18.5 23.5C18.2 23.5 17.2 22.4 17.2 21.2C17.2 19.8 18.5 17.5 18.5 17.5Z"
+      fill="url(#brandFlameGrad)"
+    />
+    <circle cx="18.5" cy="21.8" r="0.9" fill="#FEF08A" />
   </svg>
 );
 

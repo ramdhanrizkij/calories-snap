@@ -1,21 +1,38 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "name": "CalorieSnap - Hitung Kalori Makanan",
+  "short_name": "CalorieSnap",
+  "description": "Foto makanan Anda dan ketahui perkiraan kalorinya secara instan.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#5B52E5",
+  "lang": "id",
+  "categories": ["health", "fitness", "food", "lifestyle"],
   "icons": [
     {
-      "src": "assets/icon/favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
     },
     {
-      "src": "assets/icon/icon.png",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "maskable"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  ]
 }

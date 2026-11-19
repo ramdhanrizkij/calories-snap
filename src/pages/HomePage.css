@@ -18,6 +18,43 @@
   margin-bottom: 28px;
 }
 
+.home-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-install-header-btn {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 9999px;
+  border: 1.5px solid #e0dcfe;
+  background: linear-gradient(135deg, #f4f3ff 0%, #ebe8ff 100%);
+  color: var(--cs-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 8px rgba(91, 82, 229, 0.12);
+}
+
+.cs-install-header-btn:hover {
+  background: linear-gradient(135deg, #ebe8ff 0%, #dfdcfe 100%);
+  transform: translateY(-1px);
+}
+
+.cs-install-header-btn:active {
+  transform: scale(0.96);
+}
+
+.cs-install-header-btn ion-icon {
+  font-size: 17px;
+}
+
 .home-brand {
   display: inline-flex;
   align-items: center;
@@ -310,4 +347,55 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.settings-pwa-block {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #edf0f5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings-pwa-installed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background-color: #ecfdf5;
+  color: #059669;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.settings-pwa-installed ion-icon {
+  font-size: 20px;
+}
+
+.settings-pwa-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  border: 1.5px solid #dcd7fd;
+  background-color: #f7f6fe;
+  color: var(--cs-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-pwa-btn:hover {
+  background-color: #ede9fe;
+}
+
+.settings-pwa-btn ion-icon {
+  font-size: 19px;
 }
