@@ -1,2 +1,99 @@
-/* For information on how to create your own theme, please refer to:
-http://ionicframework.com/docs/theming/ */
+/* CalorieSnap Theme Variables */
+:root {
+  --ion-font-family:
+    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+
+  --ion-text-color: #111827;
+  --ion-text-color-rgb: 17, 24, 39;
+
+  --ion-color-primary: #5b52e5;
+  --ion-color-primary-rgb: 91, 82, 229;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5048ca;
+  --ion-color-primary-tint: #6b63e8;
+
+  --ion-color-success: #16a34a;
+  --ion-color-success-rgb: 22, 163, 74;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #138f41;
+  --ion-color-success-tint: #2dac5c;
+
+  --ion-toolbar-background: #ffffff;
+  --ion-tab-bar-background: #ffffff;
+  --ion-tab-bar-border-color: #eceef2;
+  --ion-tab-bar-color: #6b7280;
+  --ion-tab-bar-color-selected: #5b52e5;
+
+  /* Custom design tokens */
+  --cs-primary: #5b52e5;
+  --cs-primary-dark: #4b42d6;
+  --cs-lavender-bg: #efedfe;
+  --cs-lavender-circle: #e1ddfc;
+  --cs-lavender-accent: #c5c0f8;
+  --cs-surface-subtle: #f3f4f8;
+  --cs-surface-hover: #eaecf3;
+  --cs-border-subtle: #e9ebf0;
+  --cs-text-primary: #111827;
+  --cs-text-secondary: #5e6575;
+  --cs-text-muted: #6b7280;
+  --cs-mint-bg-start: #ebfcf1;
+  --cs-mint-bg-end: #e6f9ed;
+  --cs-mint-badge: #cef3db;
+  --cs-mint-text: #15803d;
+  --cs-dot-orange: #f59e0b;
+  --cs-dot-green: #65a30d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--cs-text-primary);
+  font-family: var(--ion-font-family);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Center app nicely on wide desktop viewports while staying full-width on mobile */
+.cs-page-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Custom Tab Bar styling matching CalorieSnap design */
+.cs-tab-bar {
+  height: 68px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid #eceef2;
+  --background: #ffffff;
+  --color: #6b7280;
+  --color-selected: #5b52e5;
+}
+
+.cs-tab-bar.cs-tab-bar--hidden {
+  display: none;
+}
+
+.cs-tab-button {
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+}
+
+.cs-tab-button ion-icon {
+  font-size: 24px;
+  margin-bottom: 3px;
+}
+
+.cs-tab-button ion-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
